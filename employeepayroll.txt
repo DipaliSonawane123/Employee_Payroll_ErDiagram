@@ -172,3 +172,93 @@ SELECT AVG(salary) FROM employee_payroll2
 | F      |           1 |
 +--------+-------------+
 2 rows in set (0.00 sec)
+
+#uc8 Ability to extend employee_payroll data to store employee information
+ like employee phone, address and department - Ensure employee department
+
+mysql> select * from employee_payroll2
+    -> ;
++----+----------+--------------+--------+-----------+------------+
+| id | name     | phone_number | gender | salary    | start      |
++----+----------+--------------+--------+-----------+------------+
+|  1 | Santhosh | NULL         | M      | 300000000 | 2022-05-22 |
+|  2 | Aravind  | NULL         | M      |  10000000 | 2022-05-25 |
+|  3 | Namitha  | NULL         | F      |  10000000 | 2022-05-29 |
++----+----------+--------------+--------+-----------+------------+
+3 rows in set (0.02 sec)
+
+
+mysql> alter table employee_payroll2  modify phone_number varchar(250) after name;
+Query OK, 0 rows affected (0.23 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll2;
++----+----------+--------------+--------+-----------+------------+
+| id | name     | phone_number | gender | salary    | start      |
++----+----------+--------------+--------+-----------+------------+
+|  1 | Santhosh | NULL         | M      | 300000000 | 2022-05-22 |
+|  2 | Aravind  | NULL         | M      |  10000000 | 2022-05-25 |
+|  3 | Namitha  | NULL         | F      |  10000000 | 2022-05-29 |
++----+----------+--------------+--------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> update employee_payroll2 set phone_number='9934556756'where name='Santhosh';
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll2 set phone_number='9234553756'where name='Aravind';
+Query OK, 1 row affected (0.14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll2 set phone_number='9234553756'where name='Aravind';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> update employee_payroll2 set phone_number='9234345686'where name='Namita';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update employee_payroll2 set phone_number='9234345686'where name='Namitha';
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll2
+    -> ;
++----+----------+--------------+--------+-----------+------------+
+| id | name     | phone_number | gender | salary    | start      |
++----+----------+--------------+--------+-----------+------------+
+|  1 | Santhosh | 9934556756   | M      | 300000000 | 2022-05-22 |
+|  2 | Aravind  | 9234553756   | M      |  10000000 | 2022-05-25 |
+|  3 | Namitha  | 9234345686   | F      |  10000000 | 2022-05-29 |
++----+----------+--------------+--------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee_payroll2 add address varchar(255)not null default 'mumbai,Maharashtra'after phone_number;
+Query OK, 0 rows affected (0.36 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll2;
++----+----------+--------------+--------------------+--------+-----------+------------+
+| id | name     | phone_number | address            | gender | salary    | start      |
++----+----------+--------------+--------------------+--------+-----------+------------+
+|  1 | Santhosh | 9934556756   | mumbai,Maharashtra | M      | 300000000 | 2022-05-22 |
+|  2 | Aravind  | 9234553756   | mumbai,Maharashtra | M      |  10000000 | 2022-05-25 |
+|  3 | Namitha  | 9234345686   | mumbai,Maharashtra | F      |  10000000 | 2022-05-29 |
++----+----------+--------------+--------------------+--------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee_payroll2 rename employee_details;
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> select * from employee_details;
++----+----------+--------------+--------------------+--------+-----------+------------+
+| id | name     | phone_number | address            | gender | salary    | start      |
++----+----------+--------------+--------------------+--------+-----------+------------+
+|  1 | Santhosh | 9934556756   | mumbai,Maharashtra | M      | 300000000 | 2022-05-22 |
+|  2 | Aravind  | 9234553756   | mumbai,Maharashtra | M      |  10000000 | 2022-05-25 |
+|  3 | Namitha  | 9234345686   | mumbai,Maharashtra | F      |  10000000 | 2022-05-29 |
++----+----------+--------------+--------------------+--------+-----------+------------+
+3 rows in set (0.00 sec)
+
+
+
