@@ -58,3 +58,29 @@ Records: 3  Duplicates: 0  Warnings: 0
 |  3 | Namitha  | 10000000 | 2022-05-29 |
 +----+----------+----------+------------+
 3 rows in set (0.00 sec)
+
+#UC5 Ability to retrieve salary data for a particular employee as well as all employees who have joined
+ in a particular data range from the payroll service databas
+ 
+ SELECT * FROM employee_payroll2
+    -> WHERE start BETWEEN CAST('2022-05-22' AS DATE) AND DATE(NOW());
++----+----------+----------+------------+
+| id | name     | salary   | start      |
++----+----------+----------+------------+
+|  1 | Santhosh | 10000000 | 2022-05-22 |
+|  2 | Aravind  | 10000000 | 2022-05-25 |
+|  3 | Namitha  | 10000000 | 2022-05-29 |
++----+----------+----------+------------+
+3 rows in set (0.00 sec)
+ SELECT salary FROM employee_payroll2
+    -> WHERE name = 'Bill';
+Empty set (0.00 sec)
+
+SELECT salary FROM employee_payroll2
+    -> WHERE name = 'Santhosh';
++----------+
+| salary   |
++----------+
+| 10000000 |
++----------+
+1 row in set (0.00 sec)
