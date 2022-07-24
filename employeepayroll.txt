@@ -1,3 +1,18 @@
+ #UC1 Ability to create a payroll service database
+
+CREATE DATABASE payroll_services1;
+Query OK, 1 row affected (0.13 sec)
+
+ USE payroll_services1;
+Database changed
+mysql> SELECT DATABASE();
++-------------------+
+| DATABASE()        |
++-------------------+
+| payroll_services1 |
++-------------------+
+1 row in set (0.00 sec)
+
 #UC2 Ability to create a employee payroll table in the payroll service database to manage employee payrolls
 
  CREATE TABLE employee_payroll
@@ -21,3 +36,13 @@ Query OK, 0 rows affected (0.71 sec)
 | start  | date         | NO   |     | NULL    |                |
 +--------+--------------+------+-----+---------+----------------+
 5 rows in set (0.01 sec)
+
+
+#UC3 Ability to create employee payroll data in the payroll service database as part of CRUD Operation 
+
+INSERT INTO employee_payroll2 ( name, salary, start) VALUES
+    -> ('Santhosh', 30000000.00, '2022-05-22'),
+    ->  ('Aravind', 10000000.00, '2022-05-25'),
+    -> ('Namitha', 10000000.00, '2022-05-29');
+Query OK, 3 rows affected (0.11 sec)
+Records: 3  Duplicates: 0  Warnings: 0
