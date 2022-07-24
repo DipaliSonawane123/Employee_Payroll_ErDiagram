@@ -340,6 +340,49 @@ mysql> select * from employee_payroll2
 +----+----------+-----------+------------+-------------+------------+---------+------------+
 3 rows in set (0.00 sec)
 
+#uc11Implement the ER Diagram
+into Payroll Service DB
+
+create table employee_department
+    -> (
+    -> Id                 int NOT Null auto_increment,
+    -> EmpId              int Not Null,
+    -> DeptName           varchar(45) Not null,
+    -> Primary key(Id),
+    -> FOREIGN KEY (EmpId) REFERENCES employee_details(EmployeeID) ON DELETE CASCADE
+    -> );
+Query OK, 0 rows affected (0.77 sec)
+
+mysql> insert into employee_department ( EmpId, DeptName) values (  '1', 'Finance'),
+    ->   (  '2', 'Sales'),
+    ->   ( '3', 'Marketing');
+Query OK, 3 rows affected (0.08 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_department;
++----+-------+-----------+
+| Id | EmpId | DeptName  |
++----+-------+-----------+
+|  1 |     1 | Finance   |
+|  2 |     2 | Sales     |
+|  3 |     3 | Marketing |
++----+-------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> Insert into employee_department ( EmpId, DeptName) values (  '3', 'HR');
+Query OK, 1 row affected (0.15 sec)
+
+mysql> select * from employee_department;
++----+-------+-----------+
+| Id | EmpId | DeptName  |
++----+-------+-----------+
+|  1 |     1 | Finance   |
+|  2 |     2 | Sales     |
+|  3 |     3 | Marketing |
+|  4 |     3 | HR        |
++----+-------+-----------+
+4 rows in set (0.00 sec)
+
 
 
 
