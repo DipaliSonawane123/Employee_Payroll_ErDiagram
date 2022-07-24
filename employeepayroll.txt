@@ -84,3 +84,27 @@ SELECT salary FROM employee_payroll2
 | 10000000 |
 +----------+
 1 row in set (0.00 sec)
+
+#UC6 Ability to add Gender to Employee Payroll Table and Update the Rows to  reflect the correct Employee Gender
+
+update employee_payroll2 set gender = 'M' where name = 'Santhosh';
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+ update employee_payroll2 set gender = 'M' where name = 'Aravind';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+ update employee_payroll2 set gender = 'F' where name = 'Namitha';
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+ SELECT * FROM employee_payroll2
+    -> ;
++----+----------+--------+----------+------------+
+| id | name     | gender | salary   | start      |
++----+----------+--------+----------+------------+
+|  1 | Santhosh | M      | 10000000 | 2022-05-22 |
+|  2 | Aravind  | M      | 10000000 | 2022-05-25 |
+|  3 | Namitha  | F      | 10000000 | 2022-05-29 |
++----+----------+--------+----------+------------+
+3 rows in set (0.00 sec)
