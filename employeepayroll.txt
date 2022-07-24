@@ -383,6 +383,65 @@ mysql> select * from employee_department;
 +----+-------+-----------+
 4 rows in set (0.00 sec)
 
+#UC12 Ensure all retrieve queries done especially in UC 4, UC 5 and UC 7 
+are working with new table structure
 
+mysql> select * from employee_payroll2 emp1 ,employee_details emp2
+    -> where emp1.id=emp2.EmployeeID;
++----+----------+-----------+------------+-------------+------------+---------+------------+------------+----------+--------+---------------+---------+------------+---------------------------+
+| ID | name     | basic_pay | deductions | taxable_pay | income_tax | net_pay | Start_date | EmployeeID | Name     | Gender | Mobile_Number | Address | Experience | EmailId                   |
++----+----------+-----------+------------+-------------+------------+---------+------------+------------+----------+--------+---------------+---------+------------+---------------------------+
+|  1 | Santhosh |   5000000 |      60000 |        7000 |      20000 |   20000 | 2022-05-22 |          1 | Santhosh | M      |    1325469781 | Mumbai  | 4 Years    | Santhoshkumar@hotmail.com |
+|  2 | Aravind  |   5000000 |      60000 |        7000 |      20000 |   20000 | 2022-05-25 |          2 | Aravind  | M      |    1345769781 | Shimla  | 3 Years    | ar123@hotmail.com         |
+|  3 | Namitha  |   5000000 |      60000 |        7000 |      20000 |   20000 | 2022-05-29 |          3 | Namitha  | F      |    1345769781 | Shimla  | 2 Years    | nama13@hotmail.com        |
++----+----------+-----------+------------+-------------+------------+---------+------------+------------+----------+--------+---------------+---------+------------+---------------------------+
+3 rows in set (0.10 sec)
+
+
+mysql> select sum(Net_Pay) from employee_payroll2 emp1 , employee_details emp2
+    -> where emp1.id=emp2.EmployeeID;
++--------------+
+| sum(Net_Pay) |
++--------------+
+|        60000 |
++--------------+
+1 row in set (0.00 sec)
+
+
+mysql> select sum(net_pay) from employee_payroll2 emp1 , employee_details emp2
+    -> where emp1.id=emp2.EmployeeID;
++--------------+
+| sum(net_pay) |
++--------------+
+|        60000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(net_pay) from employee_payroll2 emp1 , employee_details emp2
+    -> where emp1.id=emp2.EmployeeID;
++--------------+
+| avg(net_pay) |
++--------------+
+|        20000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select count(net_pay) from employee_payroll2 emp1 , employee_details emp2
+    -> where emp1.id=emp2.EmployeeID;
++----------------+
+| count(net_pay) |
++----------------+
+|              3 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select count(id) from employee_payroll2 emp1 , employee_details emp2
+    -> where emp1.id=emp2.EmployeeID;
++-----------+
+| count(id) |
++-----------+
+|         3 |
++-----------+
+1 row in set (0.00 sec)
 
 
