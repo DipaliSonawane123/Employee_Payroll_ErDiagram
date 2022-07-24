@@ -260,5 +260,86 @@ mysql> select * from employee_details;
 +----+----------+--------------+--------------------+--------+-----------+------------+
 3 rows in set (0.00 sec)
 
+#UC9Ability to extend employee_payroll table to have 
+Basic Pay, Deductions, Taxable Pay, Income Tax, Net Pay
+
+mysql> Create table employee_payroll2
+    -> (
+    -> ID  int NOT NULL auto_increment,
+    -> name  varchar(45) NOT NULL,
+    -> salary double not null,
+    -> Start_date date not null,
+    -> Primary key (ID)
+    -> );
+Query OK, 0 rows affected (0.57 sec)
+
+mysql> insert into employee_payroll2(name ,salary,Start_date)values
+    -> ('Santhosh', 300000000,^C
+
+mysql> insert into employee_payroll2(name ,salary,Start_date)values
+    -> ('Santhosh',  300000000, '2022-05-22'),
+    -> ('Aravind',10000000,'2022-05-25'),
+    -> ('Namitha', 10000000,'2022-05-29');
+Query OK, 3 rows affected (0.13 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll2
+    -> ;
++----+----------+-----------+------------+
+| ID | name     | salary    | Start_date |
++----+----------+-----------+------------+
+|  1 | Santhosh | 300000000 | 2022-05-22 |
+|  2 | Aravind  |  10000000 | 2022-05-25 |
+|  3 | Namitha  |  10000000 | 2022-05-29 |
++----+----------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee_payroll2 drop salary;
+Query OK, 0 rows affected (0.39 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll2
+    -> ;
++----+----------+------------+
+| ID | name     | Start_date |
++----+----------+------------+
+|  1 | Santhosh | 2022-05-22 |
+|  2 | Aravind  | 2022-05-25 |
+|  3 | Namitha  | 2022-05-29 |
++----+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee_payroll2 add basic_pay float(10) not null default '5000000'after name;
+Query OK, 0 rows affected (0.38 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll2 add deductions float(10) not null default '60000'after basic_pay;
+Query OK, 0 rows affected (0.44 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll2 add taxable_pay float(10) not null default '7000'after deductions;
+Query OK, 0 rows affected (0.34 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll2 add income_tax float(10) not null default '20000'after taxable_pay;
+Query OK, 0 rows affected (0.35 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll2 add net_pay float(10) not null default '20000'after income_tax;
+Query OK, 0 rows affected (0.28 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll2
+    -> ;
++----+----------+-----------+------------+-------------+------------+---------+------------+
+| ID | name     | basic_pay | deductions | taxable_pay | income_tax | net_pay | Start_date |
++----+----------+-----------+------------+-------------+------------+---------+------------+
+|  1 | Santhosh |   5000000 |      60000 |        7000 |      20000 |   20000 | 2022-05-22 |
+|  2 | Aravind  |   5000000 |      60000 |        7000 |      20000 |   20000 | 2022-05-25 |
+|  3 | Namitha  |   5000000 |      60000 |        7000 |      20000 |   20000 | 2022-05-29 |
++----+----------+-----------+------------+-------------+------------+---------+------------+
+3 rows in set (0.00 sec)
+
+
 
 
