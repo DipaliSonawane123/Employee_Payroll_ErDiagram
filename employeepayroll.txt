@@ -46,3 +46,15 @@ INSERT INTO employee_payroll2 ( name, salary, start) VALUES
     -> ('Namitha', 10000000.00, '2022-05-29');
 Query OK, 3 rows affected (0.11 sec)
 Records: 3  Duplicates: 0  Warnings: 0
+
+#UC4 Ability to retrieve all the employee payroll data that is added to payroll service database
+
+ SELECT * FROM employee_payroll2;
++----+----------+----------+------------+
+| id | name     | salary   | start      |
++----+----------+----------+------------+
+|  1 | Santhosh | 10000000 | 2022-05-22 |
+|  2 | Aravind  | 10000000 | 2022-05-25 |
+|  3 | Namitha  | 10000000 | 2022-05-29 |
++----+----------+----------+------------+
+3 rows in set (0.00 sec)
